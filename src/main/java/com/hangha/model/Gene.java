@@ -2,7 +2,12 @@ package com.hangha.model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Gene {
+	@Id
 	private int entrezGeneId;
 	private String hugoSymbol;
 	private ArrayList<String> geneAliases;
@@ -17,6 +22,7 @@ public class Gene {
 		this.oncogene = oncogene;
 		this.tsg = tsg;
 	}
+	
 	public int getEntrezGeneId() {
 		return entrezGeneId;
 	}
@@ -46,5 +52,5 @@ public class Gene {
 	}
 	public void setTsg(boolean tsg) {
 		this.tsg = tsg;
-	}	
+	}
 }
