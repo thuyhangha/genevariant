@@ -1,13 +1,10 @@
 package com.hangha.services.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.hangha.model.Gene;
 import com.hangha.model.Variant;
 import com.hangha.repository.VariantRepository;
 import com.hangha.services.VariantServices;
@@ -34,9 +31,4 @@ public class VariantServicesImpl implements VariantServices {
         PageRequest pageRequest = new PageRequest(page - 1, size);
         return variantRepository.findAll(pageRequest);
     }
-	
-	/*public List<Variant> getGeneVariant(Gene gene) {
-//		return variantRepository.findBygene(gene);
-		return variantRepository.findBygeneEntrezGeneId(gene.getEntrezGeneId());
-	}*/
 }
