@@ -28,7 +28,7 @@ public class FetchVariantController {
 	private VariantServices variantServices;
 	
 	
-	@RequestMapping("/fetchVariants")
+	@RequestMapping("/data-init")
     public String fetchVariants() {
 		String url = "http://oncokb.org/api/v1/genes/673/variants";
 		JSONArray response = fetchVariantServices.fetchVariantData(url);
@@ -36,11 +36,16 @@ public class FetchVariantController {
 			try {
 				JSONObject object = response.getJSONObject(i);
 				JSONObject gene = object.getJSONObject("gene");
+				boolean oncogene = gene.getBoolean("oncogene");
+				// Only use genes that are listed as an “OncoGene”
+				if(oncogene == false) {
+					continue;
+				}
 				int entrezGeneId = gene.getInt("entrezGeneId");
 				String entrezGeneIdString = entrezGeneId + "";
-				
-				Gene geneDB = null;
+				// Ignore empty entrezGeneId
 				if(!entrezGeneIdString.isEmpty()){
+					Gene geneDB = null;
 					geneDB = geneServices.get(entrezGeneId);
 					
 					if(geneDB == null) {
@@ -51,19 +56,17 @@ public class FetchVariantController {
 							String aliases = geneAliasesJson.getString(j);
 							geneAliases.add(aliases);
 						}
-						boolean oncogene = gene.getBoolean("oncogene");
 						boolean tsg = gene.getBoolean("tsg");
 						geneDB = new Gene(entrezGeneId, hugoSymbol, geneAliases, oncogene, tsg);
 						geneServices.add(geneDB);
 					}
+					String alteration = object.getString("alteration");
+					JSONObject consequence = object.getJSONObject("consequence");
+					String consequenceTerm = consequence.getString("term");
+					boolean isGenerallyTruncating = consequence.getBoolean("isGenerallyTruncating");
+					Variant variant = new Variant(alteration, consequenceTerm, isGenerallyTruncating, geneDB);
+					variantServices.add(variant);
 				}
-				
-				String alteration = object.getString("alteration");
-				JSONObject consequence = object.getJSONObject("consequence");
-				String consequenceTerm = consequence.getString("term");
-				boolean isGenerallyTruncating = consequence.getBoolean("isGenerallyTruncating");
-				Variant variant = new Variant(alteration, consequenceTerm, isGenerallyTruncating, geneDB);
-				variantServices.add(variant);
 			} catch (JSONException e) {
 				System.err.println(e.getMessage());
 			}

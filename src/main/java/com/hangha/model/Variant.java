@@ -24,6 +24,10 @@ public class Variant {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Gene gene;
 	
+	public Variant(){
+		super();
+	}
+	
 	public Variant(String alteration, String consequenceTerm, boolean isGenerallyTruncating,  Gene gene) {
 		super();
 		this.alteration = alteration;
@@ -58,5 +62,10 @@ public class Variant {
 	public void setGene(Gene gene) {
 		this.gene = gene;
 	}
-	
+
+	@Override
+	public String toString() {
+//		String toString = "{alteration:"
+		return super.toString();
+	}
 }
