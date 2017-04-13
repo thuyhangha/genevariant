@@ -48,6 +48,7 @@ public class FetchVariantController extends BaseController {
 					Gene geneDB = null;
 					geneDB = geneServices.get(entrezGeneId);
 					
+					//gene does not exist on DB
 					if(geneDB == null) {
 						String hugoSymbol = gene.getString("hugoSymbol");
 						ArrayList<String> geneAliases = new ArrayList<>();

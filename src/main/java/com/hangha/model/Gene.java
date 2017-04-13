@@ -7,12 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.Type;
+import org.springframework.hateoas.ResourceSupport;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 @Entity
-public class Gene {
+public class Gene extends ResourceSupport{
+	
 	@Id
 	@Column(name="entrezGeneId")
-	private int id;
+	private Integer  entrezGeneId;
 	
 	private String hugoSymbol;
 	
@@ -30,7 +36,7 @@ public class Gene {
 	
 	public Gene(int entrezGeneId, String hugoSymbol, ArrayList<String> geneAliases, boolean oncogene, boolean tsg) {
 		super();
-		this.id = entrezGeneId;
+		this.entrezGeneId = entrezGeneId;
 		this.hugoSymbol = hugoSymbol;
 		this.geneAliases = geneAliases;
 		this.oncogene = oncogene;
@@ -62,11 +68,17 @@ public class Gene {
 		this.tsg = tsg;
 	}
 
-	public int getId() {
-		return id;
+	public Integer getEntrezGeneId() {
+		return entrezGeneId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setEntrezGeneId(int entrezGeneId) {
+		this.entrezGeneId = entrezGeneId;
 	}
+
+	public void setEntrezGeneId(Integer entrezGeneId) {
+		this.entrezGeneId = entrezGeneId;
+	}
+
+	
 }

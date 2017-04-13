@@ -34,6 +34,6 @@ public class VariantServicesImpl implements VariantServices {
 	@Override
 	public Page<Variant> getByGeneId(int geneId, Integer page, Integer size) {
 		PageRequest pageRequest = new PageRequest(page - 1, size);
-        return variantRepository.findByGeneId(geneId, pageRequest);
+        return variantRepository.findByGeneEntrezGeneId(geneId, pageRequest);
 	}
 }
