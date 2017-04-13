@@ -8,13 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
+import org.springframework.hateoas.ResourceSupport;
 
 @Entity
-public class Variant {
+public class Variant extends ResourceSupport{
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
-	private int id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer variantId;
 	private String alteration;
 	private String consequenceTerm;
 	
@@ -61,5 +62,13 @@ public class Variant {
 
 	public void setGene(Gene gene) {
 		this.gene = gene;
+	}
+	
+	public Integer getVariantId() {
+		return variantId;
+	}
+
+	public void setVariantId(Integer variantId) {
+		this.variantId = variantId;
 	}
 }
