@@ -3,11 +3,13 @@ package com.hangha.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import com.hangha.model.Gene;
 import com.hangha.repository.GeneRepository;
 import com.hangha.services.GeneServices;
 
+@Service
 public class GeneServicesImpl implements GeneServices{
 
 	@Autowired

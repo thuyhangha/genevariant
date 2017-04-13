@@ -13,14 +13,14 @@ public class Variant {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int id;
-	private int alteration;
+	private String alteration;
 	private String consequenceTerm;
-	private int isGenerallyTruncating;
+	private boolean isGenerallyTruncating;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Gene gene;
 	
-	public Variant(int alteration, String consequenceTerm, int isGenerallyTruncating,  Gene gene) {
+	public Variant(String alteration, String consequenceTerm, boolean isGenerallyTruncating,  Gene gene) {
 		super();
 		this.alteration = alteration;
 		this.consequenceTerm = consequenceTerm;
@@ -28,10 +28,10 @@ public class Variant {
 		this.setGene(gene);
 	}
 	
-	public int getAlteration() {
+	public String getAlteration() {
 		return alteration;
 	}
-	public void setAlteration(int alteration) {
+	public void setAlteration(String alteration) {
 		this.alteration = alteration;
 	}
 	public String getConsequenceTerm() {
@@ -40,10 +40,10 @@ public class Variant {
 	public void setConsequenceTerm(String consequenceTerm) {
 		this.consequenceTerm = consequenceTerm;
 	}
-	public int getIsGenerallyTruncating() {
+	public boolean getIsGenerallyTruncating() {
 		return isGenerallyTruncating;
 	}
-	public void setIsGenerallyTruncating(int isGenerallyTruncating) {
+	public void setIsGenerallyTruncating(boolean isGenerallyTruncating) {
 		this.isGenerallyTruncating = isGenerallyTruncating;
 	}
 

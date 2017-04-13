@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hangha.model.Gene;
+import com.hangha.model.Variant;
 import com.hangha.services.FetchVariantServices;
 import com.hangha.services.GeneServices;
 import com.hangha.services.VariantServices;
@@ -38,27 +39,29 @@ public class GeneController {
 				int entrezGeneId = gene.getInt("entrezGeneId");
 				Gene geneDB = geneServices.get(entrezGeneId);
 				if(geneDB == null) {
-					String hugoSymbol = object.getString("hugoSymbol");
+					String hugoSymbol = gene.getString("hugoSymbol");
 					ArrayList<String> geneAliases = new ArrayList<>();
-					JSONArray geneAliasesJson = object.getJSONArray("geneAliases");
+					JSONArray geneAliasesJson = gene.getJSONArray("geneAliases");
 					for(int j = 0; j < geneAliasesJson.length(); j++) {
 						String aliases = geneAliasesJson.getString(j);
 						geneAliases.add(aliases);
 					}
-					boolean oncogene = object.getBoolean("oncogene");
-					boolean tsg = object.getBoolean("tsg");
+					boolean oncogene = gene.getBoolean("oncogene");
+					boolean tsg = gene.getBoolean("tsg");
 					geneDB = new Gene(entrezGeneId, hugoSymbol, geneAliases, oncogene, tsg);
 					geneServices.add(geneDB);
 				}
-				JSONObject consequence = object.getJSONObject("consequence");
 				String alteration = object.getString("alteration");
+				JSONObject consequence = object.getJSONObject("consequence");
+				String consequenceTerm = consequence.getString("term");
+				boolean isGenerallyTruncating = consequence.getBoolean("isGenerallyTruncating");
+				Variant variant = new Variant(alteration, consequenceTerm, isGenerallyTruncating, geneDB);
+				variantServices.add(variant);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.err.println(e.getMessage());
 			}
 		}
 		
-		
-		return response.toString();
+		return "Initial data successfully";
     }
 }

@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import com.hangha.model.Gene;
 import com.hangha.model.Variant;
 import com.hangha.repository.VariantRepository;
 import com.hangha.services.VariantServices;
 
+@Service
 public class VariantServicesImpl implements VariantServices {
 
 	@Autowired
