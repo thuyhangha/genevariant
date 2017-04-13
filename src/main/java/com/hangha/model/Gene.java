@@ -2,16 +2,22 @@ package com.hangha.model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class Gene {
 	@Id
+	@Column(name="entrezGeneId")
 	private int entrezGeneId;
+	
 	private String hugoSymbol;
+	
 	private ArrayList<String> geneAliases;
+	
 	private boolean oncogene = false;
+	
 	private boolean tsg = false;
 	
 	public Gene(int entrezGeneId, String hugoSymbol, ArrayList<String> geneAliases, boolean oncogene, boolean tsg) {
