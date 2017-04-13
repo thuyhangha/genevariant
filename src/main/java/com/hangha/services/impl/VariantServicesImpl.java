@@ -35,8 +35,8 @@ public class VariantServicesImpl implements VariantServices {
         return variantRepository.findAll(pageRequest);
     }
 	
-	public List<Variant> getGeneVariant(Gene gene) {
+	/*public List<Variant> getGeneVariant(Gene gene) {
 //		return variantRepository.findBygene(gene);
 		return variantRepository.findBygeneEntrezGeneId(gene.getEntrezGeneId());
-	}
+	}*/
 }

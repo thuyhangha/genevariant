@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Variant {
 	
@@ -15,6 +17,8 @@ public class Variant {
 	private int id;
 	private String alteration;
 	private String consequenceTerm;
+	
+	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean isGenerallyTruncating;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

@@ -8,5 +8,5 @@ import com.hangha.repository.base.BaseRepository;
 
 public interface VariantRepository extends BaseRepository<Variant>{
 	public List<Variant> findBygene(Gene gene);
-	public List<Variant> findBygeneEntrezGeneId(int geneId);
+	//public List<Variant> findByid(int geneId);
 }
