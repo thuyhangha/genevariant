@@ -1,6 +1,5 @@
 package com.hangha.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +21,7 @@ public class Variant extends ResourceSupport{
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean isGenerallyTruncating;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Gene gene;
 	
 	public Variant(){
