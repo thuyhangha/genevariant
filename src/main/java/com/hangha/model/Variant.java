@@ -62,10 +62,4 @@ public class Variant {
 	public void setGene(Gene gene) {
 		this.gene = gene;
 	}
-
-	@Override
-	public String toString() {
-//		String toString = "{alteration:"
-		return super.toString();
-	}
 }

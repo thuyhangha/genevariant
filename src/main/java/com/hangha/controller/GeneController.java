@@ -2,6 +2,7 @@ package com.hangha.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,10 +28,10 @@ public class GeneController {
 		return genes;
     }
 	
-	@RequestMapping("/genes/variants")
-    public @ResponseBody Page<Variant> fetchVariants(@RequestParam("page") Integer page,
+	@RequestMapping("/genes/{id}/variants")
+    public @ResponseBody Page<Variant> fetchVariants(@PathVariable String id, @RequestParam("page") Integer page,
     		@RequestParam("size") Integer size) {
-		Page<Variant> variants = variantServices.gets(page, size);
+		Page<Variant> variants = variantServices.getByGeneId(Integer.parseInt(id), page, size);
 		return variants;
     }
 }

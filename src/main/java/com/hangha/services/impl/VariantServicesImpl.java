@@ -16,9 +16,8 @@ public class VariantServicesImpl implements VariantServices {
 	private VariantRepository variantRepository;
 	
 	@Override
-	public Variant get(Integer geneId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Variant get(Integer id) {
+		return variantRepository.getOne(id);
 	}
 
 	@Override
@@ -31,4 +30,10 @@ public class VariantServicesImpl implements VariantServices {
         PageRequest pageRequest = new PageRequest(page - 1, size);
         return variantRepository.findAll(pageRequest);
     }
+
+	@Override
+	public Page<Variant> getByGeneId(int geneId, Integer page, Integer size) {
+		PageRequest pageRequest = new PageRequest(page - 1, size);
+        return variantRepository.findByGeneId(geneId, pageRequest);
+	}
 }
