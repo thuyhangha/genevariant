@@ -8,4 +8,5 @@ import com.hangha.repository.base.BaseRepository;
 
 public interface VariantRepository extends BaseRepository<Variant>{
 	public Page<Variant> findByGeneEntrezGeneId(int id, Pageable pageable);
+	public Variant findByVariantId(Integer id);
 }
