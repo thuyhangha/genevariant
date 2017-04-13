@@ -16,7 +16,7 @@ import com.hangha.services.GeneServices;
 import com.hangha.services.VariantServices;
 
 @RestController
-public class FetchVariantController {
+public class FetchVariantController extends BaseController {
 	
 	@Autowired
 	private FetchVariantServices fetchVariantServices; 

@@ -14,7 +14,7 @@ import com.hangha.services.GeneServices;
 import com.hangha.services.VariantServices;
 
 @RestController
-public class GeneController {
+public class GeneController extends BaseController {
 	@Autowired
 	private GeneServices geneServices;
 	

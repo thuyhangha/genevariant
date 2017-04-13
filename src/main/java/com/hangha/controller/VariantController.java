@@ -11,7 +11,7 @@ import com.hangha.model.Variant;
 import com.hangha.services.VariantServices;
 
 @RestController
-public class VariantController {
+public class VariantController extends BaseController {
 	@Autowired
 	private VariantServices variantServices;
 	
