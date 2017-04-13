@@ -61,6 +61,16 @@ public class GeneController extends BaseController {
 	public @ResponseBody Page<Variant> fetchVariantsWithPagining(@PathVariable String id,
 			@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
 		Page<Variant> variants = variantServices.getByGeneId(Integer.parseInt(id), page, size);
+		List<Variant> fetchAllVariantsPagingContent = variants.getContent();
+		
+		for (int i = 0; i < fetchAllVariantsPagingContent.size(); i++) {
+			Variant variant = fetchAllVariantsPagingContent.get(i);
+			Integer variantId = variant.getVariantId();
+			
+			Variant fetchAllVariantsMethodLinkBuilder = methodOn(VariantController.class).fetchVariantById(variantId.toString());
+			Link variantsPagingLink = linkTo(fetchAllVariantsMethodLinkBuilder).withSelfRel();
+            variant.add(variantsPagingLink);
+		}
 		return variants;
 	}
 	
