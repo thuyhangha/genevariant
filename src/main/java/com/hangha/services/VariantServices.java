@@ -1,8 +1,7 @@
 package com.hangha.services;
 
 import com.hangha.model.Variant;
+import com.hangha.services.base.BaseServices;
 
-public interface VariantServices {
-	public Variant get(int geneId);
-	public void add(Variant variant);
+public interface VariantServices extends BaseServices<Variant>{
 }

@@ -1,8 +1,8 @@
 package com.hangha.services;
 
 import com.hangha.model.Gene;
+import com.hangha.services.base.BaseServices;
 
-public interface GeneServices {
-	public Gene get(int id);
-	public void add(Gene gene);
+public interface GeneServices extends BaseServices<Gene>{
+	
 }

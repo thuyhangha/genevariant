@@ -1,20 +1,40 @@
 package com.hangha.services.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
+import com.hangha.model.Gene;
 import com.hangha.model.Variant;
+import com.hangha.repository.VariantRepository;
 import com.hangha.services.VariantServices;
 
-public class VariantServicesImpl implements VariantServices{
+public class VariantServicesImpl implements VariantServices {
 
+	@Autowired
+	private VariantRepository variantRepository;
+	
 	@Override
-	public Variant get(int geneId) {
+	public Variant get(Integer geneId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void add(Variant variant) {
-		// TODO Auto-generated method stub
-		
+		variantRepository.save(variant);
 	}
 
+	@Override
+    public Page<Variant> gets(Integer page, Integer size) {
+        PageRequest pageRequest = new PageRequest(page - 1, size);
+        return variantRepository.findAll(pageRequest);
+    }
+	
+	public List<Variant> getGeneVariant(Gene gene) {
+//		return variantRepository.findBygene(gene);
+		return variantRepository.findBygeneEntrezGeneId(gene.getEntrezGeneId());
+	}
 }

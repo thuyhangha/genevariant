@@ -18,14 +18,14 @@ public class Variant {
 	private int isGenerallyTruncating;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Gene Gene;
+	private Gene gene;
 	
-	public Variant(int alteration, String consequenceTerm, int isGenerallyTruncating,  Gene Gene) {
+	public Variant(int alteration, String consequenceTerm, int isGenerallyTruncating,  Gene gene) {
 		super();
 		this.alteration = alteration;
 		this.consequenceTerm = consequenceTerm;
 		this.isGenerallyTruncating = isGenerallyTruncating;
-		this.setGene(Gene);
+		this.setGene(gene);
 	}
 	
 	public int getAlteration() {
@@ -48,11 +48,11 @@ public class Variant {
 	}
 
 	public Gene getGene() {
-		return Gene;
+		return this.gene;
 	}
 
 	public void setGene(Gene gene) {
-		Gene = gene;
+		this.gene = gene;
 	}
 	
 }
